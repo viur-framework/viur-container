@@ -1,8 +1,10 @@
 # viur-container
 
-docker build -t viur-container - < Dockerfile
+docker build -t viur-container .
 
 docker run -it viur-container:latest
 
-docker images
-docker ps
+cd viur-site
+pipenv install -r deploy/requirements.txt 
+pipenv install
+pipenv run viur run
