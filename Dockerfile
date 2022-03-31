@@ -4,7 +4,7 @@ RUN apt-get update
 
 RUN pip install pipenv
 
-RUN curl https://pyenv.run | bash
+RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 RUN eval "$(pyenv virtualenv-init -)"
 ENV PATH=/root/.pyenv/bin:$PATH
 
