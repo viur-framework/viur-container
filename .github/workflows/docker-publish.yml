@@ -5,11 +5,11 @@ name: release
 # Controls when the action will run.
 on:
   push:
+    branches: [ main ]
     tags:
       - 'v*.*.*'
   # Triggers the workflow on push or pull request events but only for the master branch
-  #push:
-    branches: [ main ]
+  #push
   #pull_request:
   #  branches: [ feature/restructure ]
 
@@ -31,11 +31,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Get version from tag
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
@@ -50,25 +45,10 @@ jobs:
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
-          # [ "$VERSION" == "main" ] && VERSION=latest
+          [ "$VERSION" == "main" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-
-      - name: fetch changelog info
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v2
-        with:
-          version: ${{ steps.tag_name.outputs.current_version }}
-
-      - name: create release
-        uses: softprops/action-gh-release@v1
-        with:
-          body: ${{ steps.changelog_reader.outputs.changes }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
