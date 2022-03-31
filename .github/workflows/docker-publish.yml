@@ -7,7 +7,7 @@ name: Build and publish Viur3 Runtime container
 
 on:
   push:
-    branches: ['release']
+    branches: ['main']
 
 env:
   REGISTRY: ghcr.io
