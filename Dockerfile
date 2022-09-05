@@ -1,4 +1,4 @@
-FROM python:3.9.12-bullseye
+FROM python:3.10.6-bullseye
 
 RUN apt-get update
 
@@ -31,10 +31,7 @@ VOLUME ["~/.local/share/virtualenvs"]
 # expose necessary ports to host
 EXPOSE 8080 8081 8090 8091 8092 27017 27018
 
-RUN pyenv install 3.8.13
-RUN pyenv install 3.10.4
-#edit
-RUN pip install viur-cli
+RUN pyenv install 3.10.6
 
 # copy entrypoint script into container, sets env variables for pipenv
 COPY entrypoint.sh /entrypoint.sh
