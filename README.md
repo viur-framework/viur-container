@@ -22,4 +22,7 @@ cd viur-site
 pipenv install --dev
 
 pipenv run viur run
-# If you use MacOS then use this command:  viur run develop --port 8091 --host 0.0.0.0
+
+
+# If you use MacOS then use this command:
+viur run develop --port 8091 --host 0.0.0.0
