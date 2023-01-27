@@ -2,7 +2,7 @@
 
 ## If you want to build the container by yourself
 
-first Checkout repo:
+First checkout repo:
 ```sh
 git pull github.com/viur-framework/viur-container
 ```
