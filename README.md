@@ -7,17 +7,17 @@ first Checkout repo:
 git pull github.com/viur-framework/viur-container
 ```
 
-## Then build the container:
+#### Then build the container:
 Note that there is a dot as the last argument at the end, this points to the current working directory where the Dockerfile resides.
 ```sh
 docker build -t viur-container .
 ```
 
-## OR use the pre build Container:
+## If you would rather use the pre-built container:
 ```sh
 docker pull ghcr.io/viur-framework/viur3-container:latest
 ```
-## Run the Container
+#### Run the Container
 When starting the container for the first time, make sure you are already authenticated in gcloud. The container will use the default credentials of the host system: 
 ```sh
 gcloud auth application-default login
