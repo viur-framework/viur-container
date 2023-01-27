@@ -7,7 +7,8 @@ first Checkout repo:
 git pull github.com/viur-framework/viur-container
 ```
 
-## then Build:
+## Then build the container:
+Note that there is a dot as the last argument at the end, this points to the current working directory where the Dockerfile resides.
 ```sh
 docker build -t viur-container .
 ```
@@ -38,7 +39,7 @@ pipenv shell
 viur run
 ```
 
-** If you use MacOS then use this command from inside your pipenv instead **
+**If you use MacOS then use this command from inside your pipenv instead**
 ```sh
 viur run develop --port 8091 --host 0.0.0.0
 ```
