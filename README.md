@@ -34,7 +34,7 @@ docker run --rm --name viurdevcontainer -p 8080:8080  -p 8081:8081  -p 8090:8090
 When the container has been started successfully, you can change into your specific project directory and start working.
 Setup your pipenv and start your shell.
 ```sh
-pipenv install --de
+pipenv install --dev
 pipenv shell
 viur run
 ```
